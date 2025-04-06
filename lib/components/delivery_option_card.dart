@@ -5,7 +5,6 @@ class DeliveryOptionCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final Color color;
-  final bool isSelected;
   final VoidCallback onTap;
 
   const DeliveryOptionCard({
@@ -13,7 +12,6 @@ class DeliveryOptionCard extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.color,
-    required this.isSelected,
     required this.onTap,
   });
 
@@ -22,13 +20,10 @@ class DeliveryOptionCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
-        elevation: isSelected ? 3 : 1,
+        elevation: 2,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
-          side: BorderSide(
-            color: isSelected ? color : Colors.grey.withOpacity(0.2),
-            width: isSelected ? 1.5 : 1,
-          ),
+          side: BorderSide(color: Colors.grey.withOpacity(0.2), width: 1),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -38,30 +33,20 @@ class DeliveryOptionCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color:
-                      isSelected
-                          ? color.withOpacity(0.15)
-                          : color.withOpacity(0.08),
+                  color: color.withOpacity(0.08),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  icon,
-                  color: isSelected ? color : color.withOpacity(0.7),
-                  size: 24,
-                ),
+                child: Icon(icon, color: color.withOpacity(0.7), size: 24),
               ),
               const SizedBox(height: 12),
               Text(
                 title,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
-                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  fontWeight: FontWeight.w500,
                   fontSize: 14,
                 ),
               ),
-              if (isSelected) const SizedBox(height: 4),
-              if (isSelected)
-                Icon(Icons.check_circle_rounded, color: color, size: 18),
             ],
           ),
         ),
