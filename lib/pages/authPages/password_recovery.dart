@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jotnaci/colors.dart';
 import 'package:jotnaci/components/buttons.dart';
+import 'package:jotnaci/components/custom_text_field.dart';
 import 'package:jotnaci/pages/authPages/change_password.dart';
 import 'package:jotnaci/pages/authPages/login_page.dart';
 
@@ -50,16 +51,11 @@ class _PasswordRecoveryPageState extends State<PasswordRecoveryPage> {
                   ),
                   const SizedBox(height: 30),
                   // Email
-                  TextFormField(
+                  CustomTextField(
                     controller: _emailController,
+                    labelText: 'Email',
+                    prefixIcon: Icons.email,
                     keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: const Icon(Icons.email),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Veuillez entrer votre email';

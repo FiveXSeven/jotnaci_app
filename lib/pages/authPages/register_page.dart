@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jotnaci/colors.dart';
 import 'package:jotnaci/components/buttons.dart';
+import 'package:jotnaci/components/auth_divider.dart';
+import 'package:jotnaci/components/custom_text_field.dart';
+import 'package:jotnaci/components/password_text_field.dart';
+import 'package:jotnaci/components/social_auth_buttons.dart';
 import 'package:jotnaci/pages/authPages/login_page.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -20,9 +24,6 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
-
-  bool _obscurePassword = true;
-  bool _obscureConfirmPassword = true;
 
   @override
   void dispose() {
@@ -57,15 +58,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 30),
                   // Prénom
-                  TextFormField(
+                  CustomTextField(
                     controller: _firstNameController,
-                    decoration: InputDecoration(
-                      labelText: 'Prénom',
-                      prefixIcon: const Icon(Icons.person),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
+                    labelText: 'Prénom',
+                    prefixIcon: Icons.person,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Veuillez entrer votre prénom';
@@ -75,15 +71,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 15),
                   // Nom
-                  TextFormField(
+                  CustomTextField(
                     controller: _lastNameController,
-                    decoration: InputDecoration(
-                      labelText: 'Nom',
-                      prefixIcon: const Icon(Icons.person_outline),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
+                    labelText: 'Nom',
+                    prefixIcon: Icons.person_outline,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Veuillez entrer votre nom';
@@ -93,16 +84,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 15),
                   // Email
-                  TextFormField(
+                  CustomTextField(
                     controller: _emailController,
+                    labelText: 'Email',
+                    prefixIcon: Icons.email,
                     keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: const Icon(Icons.email),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Veuillez entrer votre email';
@@ -117,16 +103,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 15),
                   // Téléphone
-                  TextFormField(
+                  CustomTextField(
                     controller: _phoneController,
+                    labelText: 'Téléphone',
+                    prefixIcon: Icons.phone,
                     keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      labelText: 'Téléphone',
-                      prefixIcon: const Icon(Icons.phone),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Veuillez entrer votre numéro de téléphone';
@@ -136,28 +117,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 15),
                   // Mot de passe
-                  TextFormField(
+                  PasswordTextField(
                     controller: _passwordController,
-                    obscureText: _obscurePassword,
-                    decoration: InputDecoration(
-                      labelText: 'Mot de passe',
-                      prefixIcon: const Icon(Icons.lock),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscurePassword
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _obscurePassword = !_obscurePassword;
-                          });
-                        },
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
+                    labelText: 'Mot de passe',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Veuillez entrer un mot de passe';
@@ -170,28 +132,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 15),
                   // Confirmation mot de passe
-                  TextFormField(
+                  PasswordTextField(
                     controller: _confirmPasswordController,
-                    obscureText: _obscureConfirmPassword,
-                    decoration: InputDecoration(
-                      labelText: 'Confirmer le mot de passe',
-                      prefixIcon: const Icon(Icons.lock_outline),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscureConfirmPassword
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _obscureConfirmPassword = !_obscureConfirmPassword;
-                          });
-                        },
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
+                    labelText: 'Confirmer le mot de passe',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Veuillez confirmer votre mot de passe';
@@ -204,28 +147,20 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 30),
                   // Bouton d'inscription
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          // Traitement de l'inscription
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Inscription en cours...'),
-                            ),
-                          );
-                        }
-                      },
-                      child: Buttons(onPress: () {}, text: "S'inscrire"),
-                    ),
+                  SizedBox(width: double.infinity),
+                  Buttons(
+                    text: "S'inscrire",
+                    onPress: () {
+                      if (_formKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Inscription en cours...'),
+                          ),
+                        );
+                      }
+                    },
                   ),
+
                   const SizedBox(height: 20),
                   // Lien vers la page de connexion
                   Row(
@@ -236,7 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginPage(),
+                              builder: (context) => const LoginPage(),
                             ),
                           );
                         },
@@ -252,51 +187,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 30),
                   // Séparateur
-                  Row(
-                    children: [
-                      const Expanded(child: Divider(thickness: 1)),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          "Ou continuer avec",
-                          style: GoogleFonts.poppins(
-                            color: AppColors.primaryLightColor,
-                          ),
-                        ),
-                      ),
-                      const Expanded(child: Divider(thickness: 1)),
-                    ],
-                  ),
+                  const AuthDivider(text: "Ou continuer avec"),
                   const SizedBox(height: 20),
                   // Boutons de connexion sociale
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Bouton Google
-                      IconButton(
-                        icon: Image.asset("assets/google.png", width: 40),
-                        onPressed: () {
-                          // Ajouter la logique de connexion Google
-                        },
-                      ),
-                      const SizedBox(width: 20),
-                      // Bouton Facebook
-                      IconButton(
-                        icon: Image.asset("assets/facebook.png", width: 40),
-                        onPressed: () {
-                          // Ajouter la logique de connexion Facebook
-                        },
-                      ),
-                      const SizedBox(width: 20),
-                      // Bouton Apple
-                      IconButton(
-                        icon: Image.asset("assets/apple.png", width: 40),
-                        onPressed: () {
-                          // Ajouter la logique de connexion Apple
-                        },
-                      ),
-                    ],
-                  ),
+                  const SocialAuthButtons(),
                   const SizedBox(height: 30),
                 ],
               ),

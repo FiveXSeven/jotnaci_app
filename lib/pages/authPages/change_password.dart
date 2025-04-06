@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jotnaci/colors.dart';
 import 'package:jotnaci/components/buttons.dart';
+import 'package:jotnaci/components/password_text_field.dart';
 import 'package:jotnaci/pages/authPages/login_page.dart';
 
 class ChangePasswordPage extends StatefulWidget {
@@ -16,8 +17,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   final TextEditingController _newPasswordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
-  bool _obscureNewPassword = true;
-  bool _obscureConfirmPassword = true;
 
   @override
   void dispose() {
@@ -54,28 +53,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   ),
                   const SizedBox(height: 30),
                   // Nouveau mot de passe
-                  TextFormField(
+                  PasswordTextField(
                     controller: _newPasswordController,
-                    obscureText: _obscureNewPassword,
-                    decoration: InputDecoration(
-                      labelText: 'Nouveau mot de passe',
-                      prefixIcon: const Icon(Icons.lock),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscureNewPassword
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _obscureNewPassword = !_obscureNewPassword;
-                          });
-                        },
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
+                    labelText: 'Nouveau mot de passe',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Veuillez entrer un mot de passe';
@@ -88,28 +68,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   ),
                   const SizedBox(height: 15),
                   // Confirmation mot de passe
-                  TextFormField(
+                  PasswordTextField(
                     controller: _confirmPasswordController,
-                    obscureText: _obscureConfirmPassword,
-                    decoration: InputDecoration(
-                      labelText: 'Confirmer le mot de passe',
-                      prefixIcon: const Icon(Icons.lock),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscureConfirmPassword
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _obscureConfirmPassword = !_obscureConfirmPassword;
-                          });
-                        },
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
+                    labelText: 'Confirmer le mot de passe',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Veuillez confirmer votre mot de passe';
