@@ -7,6 +7,7 @@ import 'package:jotnaci/components/recent_shipment_card.dart';
 import 'package:jotnaci/components/welcome_header.dart';
 import 'package:jotnaci/pages/mainApp/express_delivery_page.dart';
 import 'package:jotnaci/pages/mainApp/history_page.dart';
+import 'package:jotnaci/pages/mainApp/notification_page.dart';
 import 'package:jotnaci/pages/mainApp/profile_page.dart';
 import 'package:jotnaci/pages/mainApp/schedule_delivery_page.dart';
 
@@ -55,7 +56,13 @@ class _HomePageState extends State<HomePage> {
                       Icons.notifications_outlined,
                       color: AppColors.textSecondary,
                     ),
-                    onPressed: () {},
+                    onPressed:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NotificationPage(),
+                          ),
+                        ),
                   ),
                 ],
                 backgroundColor: AppColors.backgroundColor,
