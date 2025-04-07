@@ -3,7 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jotnaci/colors.dart';
 
 class WelcomeHeader extends StatelessWidget {
-  const WelcomeHeader({super.key});
+  const WelcomeHeader({super.key, required this.name});
+
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class WelcomeHeader extends StatelessWidget {
       children: [
         const SizedBox(height: 4),
         Text(
-          'Nazaire Salomon',
+          name,
           style: GoogleFonts.poppins(
             fontSize: 18,
             fontWeight: FontWeight.w600,

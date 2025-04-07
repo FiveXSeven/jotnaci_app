@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
           _currentIndex == 0
               ? AppBar(
                 automaticallyImplyLeading: false,
-                title: const WelcomeHeader(),
+                title: const WelcomeHeader(name: "Nazaire Salomon"),
                 actions: [
                   IconButton(
                     icon: const Icon(
