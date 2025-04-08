@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jotnaci/colors.dart';
 import 'package:jotnaci/components/buttons.dart';
-import 'package:jotnaci/pages/authPages/register_page.dart';
+import 'package:jotnaci/pages/authPages/login_page.dart';
 
 class WelcomeTrackPage extends StatefulWidget {
   const WelcomeTrackPage({super.key});
@@ -49,7 +49,7 @@ class _WelcomeTrackPageState extends State<WelcomeTrackPage> {
                 onPress: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()),
+                    MaterialPageRoute(builder: (context) => LoginPage()),
                   );
                 },
                 text: "Commencer",

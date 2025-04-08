@@ -4,6 +4,7 @@ import 'package:jotnaci/colors.dart';
 import 'package:jotnaci/components/welcome_header.dart';
 import 'package:jotnaci/components/custom_text_field.dart';
 import 'package:jotnaci/components/buttons.dart';
+import 'package:jotnaci/pages/mainApp/details_page.dart';
 
 class ScheduleDeliveryPage extends StatefulWidget {
   const ScheduleDeliveryPage({super.key});
@@ -257,6 +258,12 @@ class _ScheduleDeliveryPageState extends State<ScheduleDeliveryPage> {
                         );
                       } else {
                         // Action à effectuer ici
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailsPage(),
+                          ),
+                        );
                       }
                     },
                     text: 'Suivant',

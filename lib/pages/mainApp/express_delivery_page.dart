@@ -4,6 +4,7 @@ import 'package:jotnaci/components/welcome_header.dart';
 import 'package:jotnaci/components/custom_text_field.dart';
 import 'package:jotnaci/components/buttons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jotnaci/pages/mainApp/details_page.dart';
 
 class ExpressDeliveryPage extends StatefulWidget {
   const ExpressDeliveryPage({super.key});
@@ -204,6 +205,12 @@ class _ExpressDeliveryPageState extends State<ExpressDeliveryPage> {
                         );
                       } else {
                         // Action pour le bouton Suivant
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailsPage(),
+                          ),
+                        );
                       }
                     },
                     text: 'Suivant',
