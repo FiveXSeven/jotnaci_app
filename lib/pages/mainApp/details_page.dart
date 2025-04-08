@@ -4,6 +4,7 @@ import 'package:jotnaci/components/welcome_header.dart';
 import 'package:jotnaci/components/custom_text_field.dart';
 import 'package:jotnaci/components/buttons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jotnaci/pages/mainApp/confirm_page.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key});
@@ -264,7 +265,12 @@ class _DetailsPageState extends State<DetailsPage> {
                   );
                 } else {
                   // Action pour le bouton Continuer
-                  // Navigator.push(...);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ConfirmPage(),
+                    ),
+                  );
                 }
               },
               text: 'Continuer',
